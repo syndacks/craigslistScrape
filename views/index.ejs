@@ -11,17 +11,19 @@
         <form>
 		  <div class="form-group">
 		    <label for="search">Craigslist Search</label>
-		    <input type="search" class="form-control" id="search" placeholder="Search">
+		    <input type="search" id="search" class="form-control" placeholder="Search"></input>
 		    <br>
 		    <button type="submit" class="btn btn-default">Submit</button>
 		  </div>
         </form>
 
         <h2>Results</h2>
-
+        <p id = "results"></p>
       </div>
 
     </div><!-- /.container -->
-
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/javascripts/main.js"></script>
 
 <% include ./partials/footer.ejs %>
