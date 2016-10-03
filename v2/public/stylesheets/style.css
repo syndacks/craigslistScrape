@@ -1,0 +1,15 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+
+}
+
+#search {
+  text-align: center;
+  width:600px;
+  height: 70px;
+  font-size:3.5em;
+  border-radius:8px;
+}

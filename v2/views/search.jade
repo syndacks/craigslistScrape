@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1 search sf bikes
+	a(href='/logout') Logout
+	br
+	br
+	input#search(type="search", placeholder="Search Craig's Bikes")
+	ul#results
+	include template.html
+
+	script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js")
+	script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+	script(src="/javascripts/main.js")
