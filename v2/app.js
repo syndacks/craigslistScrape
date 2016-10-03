@@ -1,5 +1,6 @@
 var express = require("express");
 var request = require("request");
+var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
@@ -9,6 +10,7 @@ var app = express();
 
 app.set("view engine", "jade");
 app.use(express.static('public'));	
+app.use(bodyParser.urlencoded({extended: true}));
 
 // set-up DB
 mongoose.connect("mongodb://localhost/test");
@@ -33,15 +35,49 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-// set up routes
+
+
+//---------Index Route---------------------------
 app.get("/", function(req, res){
 	res.render("index");
 });
 
+//------------Authentication Routes ---------------
+app.get("/login", function(req, res){
+	res.render("login");
+})
+
+app.post("/login", passport.authenticate("local",
+		{
+			successRedirect:"/search",
+			failureRedirect:"/login"
+		}), function (req, res){
+
+});
+
 app.get("/register", function(req, res){
 	res.render("register");
-} )
+})
 
+app.post("/register", function(req, res){
+	var newUser = new User({username: req.body.username});
+	User.register(newUser, req.body.password, function(err, user){
+		if(err){
+			console.log(err);
+			return res.render("register");
+		}
+		passport.authenticate("local")(req, res, function(){
+			res.redirect("/search");
+		});
+	});
+});
+
+app.get("/logout", function(req, res){
+	req.logout();
+	res.redirect("/");
+});
+
+//---------Search Routes ----------------
 app.get("/search", ensureAuthenticated, function(req, res){
 	res.render("search", {user: req.user});
 });
@@ -61,7 +97,7 @@ app.get('/searching', function(req, res){
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
+  res.redirect('/login')
 };
 
 function requests(url, callback){

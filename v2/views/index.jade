@@ -1,10 +1,14 @@
 extends layout
 
 block content
-  h1 search login
-  .lead please login to search
+  h1 Welcome to BikeSearch!
+  .lead please login to search for great deals near you
   br
-  a(href='') Login with Google
+  a(href='/login') Login
+  br
+  a(href='/register') Register
+  br
+  a(href='/logout') Logout
 
 script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
