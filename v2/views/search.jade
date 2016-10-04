@@ -1,8 +1,10 @@
 extends layout
 
 block content
-	h1 search sf bikes
-	a(href='/logout') Logout
+	h1 search SF bikes
+	.lead Welcome, #{user}
+	form(METHOD="LINK", ACTION="logout")
+		input(type="submit", value="Logout", class='btn btn-sm btn-primary')
 	br
 	br
 	input#search(type="search", placeholder="Search Craig's Bikes")

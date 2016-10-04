@@ -25,5 +25,14 @@ $(function(){
       });
     };
   });
+  $results.on('click', '.save-btn', function() {
+    var jobTitle = $(this).next('a').text()
+    var jobURL = $(this).next('a').attr('href')
+    var parameters = { title: jobTitle, url: jobURL };
+    // console.log(parameters)
+    $.get( '/save', parameters, function(data) {
+      console.log("whee!")
+});
+  });
 });
 

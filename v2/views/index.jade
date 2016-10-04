@@ -1,14 +1,16 @@
 extends layout
 
 block content
-  h1 Welcome to BikeSearch!
-  .lead please login to search for great deals near you
-  br
-  a(href='/login') Login
-  br
-  a(href='/register') Register
-  br
-  a(href='/logout') Logout
+	h1 Welcome to BikeSearch!
+	.lead please login to search for great deals near you
+
+	br
+	form(METHOD="LINK", ACTION="login")
+		input(type="submit", value="Login", class='btn btn-large btn-primary')
+	form(METHOD="LINK", ACTION="register")
+		input(type="submit", value="Register", class='btn btn-large btn-primary')
+
+
 
 script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")

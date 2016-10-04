@@ -79,7 +79,7 @@ app.get("/logout", function(req, res){
 
 //---------Search Routes ----------------
 app.get("/search", ensureAuthenticated, function(req, res){
-	res.render("search", {user: req.user});
+	res.render("search", {user: req.user.username});
 });
 
 app.get('/searching', function(req, res){
@@ -95,6 +95,12 @@ app.get('/searching', function(req, res){
 	});
 });
 
+app.get("/save", ensureAuthenticated, function(req, res){
+	var title = req.query.title;
+	var url = req.query.url;
+	console.log(title, url);
+});
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
@@ -106,7 +112,7 @@ function requests(url, callback){
 		var resultsArray = [];
 		//use request to parse the body of the URL into JSON
 		body = JSON.parse(body);
-		console.log(body.query.results.RDF.item);
+		// console.log(body.query.results.RDF.item);
 		//logic used to compare search results with the input from user
 		if(!body.query.results.RDF.item){
 			results = "No results found. Try again.";
@@ -119,7 +125,7 @@ function requests(url, callback){
 				);
 			};
 		};
-		console.log(resultsArray);
+		// console.log(resultsArray);
 		//pass back the results to client side
 		callback(resultsArray);
 	});

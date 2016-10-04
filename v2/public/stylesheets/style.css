@@ -13,3 +13,9 @@ body {
   font-size:3.5em;
   border-radius:8px;
 }
+
+input.btn.btn-large.btn-primary {
+	margin-bottom: 2px;
+	margin-left: 2px;
+	
+}
