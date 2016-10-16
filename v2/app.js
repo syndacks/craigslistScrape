@@ -6,6 +6,8 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var User = require("./models/user");
 
+//CHANGED APP.JS ON V2
+
 var app = express();
 
 app.set("view engine", "jade");
